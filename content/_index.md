@@ -10,11 +10,12 @@ outputs:
   - json
 ---
 
-Computer Science undergraduate at University of São Paulo (USP)
+Computer Science undergraduate at the University of São Paulo (USP).
 
 Passionate about leveraging mathematical and computational techniques to tackle
-complex problems and even participating in international competitions like ICPC and
-IMC, with focus on solving such challenges. I’m particularly enthusiastic about
-Algorithms (from areas ranging from Competitive Programming to Machine Learning),
-proving their correctness, Formal Mathematics, Statistical Learning Theory and
-Theoretical Computer Science.
+complex problems and even participating in international competitions like the International
+Collegiate Programming Contest (ICPC) and the International Mathematics Competition (IMC).
+
+I’m particularly enthusiastic about Competitive Programming, Pure Mathematics, Machine
+Learning, Data Science, Computational Geometry, Probabilistic Machine Learning and Theoretical Computer
+Scicence.
