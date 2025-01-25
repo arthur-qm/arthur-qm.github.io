@@ -1,4 +1,4 @@
-title = "Eddie Webbinaro"
+title = "Arthur Queiroz Moura"
 baseURL = "https://example.com/"
 theme = "hugo-resume"
 languageCode = "en-us"
@@ -8,19 +8,19 @@ PygmentsStyle = "monokai"
 enableGitInfo = false
 
 [params]
-address = "Rollinsford, NH"
-email = "email@domain.com"
+address = "São Carlos, SP"
+email = "arthurqmcc@gmail.com"
 favicon = "/favicon.ico"
-firstName = "Eddie"
-lastName = "Webbinaro"
-phone = "1-555-555-1234"
-profileImage = "img/TechChat.png"
-showQr = true
-showContact = true
-showBoards  = true
-showCertifications = true
+firstName = "Arthur"
+lastName = "Queiroz Moura"
+phone = "+55 (16) 9 9106-7613"
+profileImage = "img/foto-minha-na-guatemala.jpg"
+showQr = false
+showContact = false
+showBoards  = false
+showCertifications = false
 showSocializations = true
-sections = ["skills","publications","creations","contributions","experience","education","blog"]
+sections = ["research-projects", "publications", "awards", "skills", "experience", "education", "blog"]
 
 
 [params.google]
@@ -30,26 +30,16 @@ trackerID = "XX-123446-01"
 
 [[params.handles]]
     name = "LinkedIn"
-    link = "https://www.linkedin.com/in/edwardwebb/"
+    link = "https://www.linkedin.com/in/arthur-queiroz-moura-a6b797252/"
 
 [[params.handles]]
     name = "GitHub"
-    link = "https://github.com/eddiewebb/"
+    link = "https://github.com/arthur-qm/"
 
 [[params.handles]]
-    name = "Keybase"
-    link = "https://keybase.io/edwardawebb"
-    icon = "keybase"
-    
-[[params.handles]]
-    name = "Bluesky"
-    link = "https://bsky.app/profile/webbinaro.dev"
-    icon = "bluesky"
-
-[[params.handles]]
-    link = "https://stackoverflow.com/users/82880/eddie"
-    name = "Stack Overflow"
-    icon = "stack-overflow"
+    name = "X"
+    link = "https://x.com/ArthurQ28564836"
+    icon = "x-twitter"
 
 [outputs]
 home = ["HTML", "JSON"]

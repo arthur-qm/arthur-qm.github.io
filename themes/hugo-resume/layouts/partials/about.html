@@ -3,11 +3,11 @@
           <div class="resume-item d-flex flex-column flex-md-row">
             <div class="mr-auto">
 
-              <h1 class="mb-0">{{ .Site.Params.firstName }}
+              <h2 class="mb-0">{{ .Site.Params.firstName }}
                 <span class="text-primary">{{ .Site.Params.lastName }}</span>
-              </h1>
+              </h2>
               <div class="subheading mb-5">{{ .Site.Params.address }} ·
-                <a href="mailto:{{ substr .Site.Params.email 0 5}}-remove-{{ substr .Site.Params.email 5 }}">{{ substr .Site.Params.email 0 5}}<span style="display:none">-remove-</span>{{ substr .Site.Params.email 5 }}</a>
+                <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
               </div>
 
             </div>

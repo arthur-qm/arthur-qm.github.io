@@ -1,32 +1,37 @@
 [
   {
-      "grouping":"Architecture",
-      "skills":[ "IP Networking","DNS","Firewalls","Load Balancing","Microservices","RESTful APIs","SaaS/PaaS/IaaS"]
-  },{
-      "grouping":"Languages, Operating Systems & Tools",
-      "skills":[ "Java","Python","git","subversion","linux","bash","php","jquery","javascript"]
+    "grouping": "Data Science",
+    "skills": [
+      {"name": "Python", "icon":"python-plain"}, 
+      {"name": "SciKitLearn", "icon":"scikitlearn-plain"},
+      {"name": "Pandas", "icon":"pandas-plain"},
+      {"name": "Matplotlib", "icon":"matplotlib-plain"},
+      "Tensorflow",
+      "Pytorch",
+      "Jupyter"
+    ]
   },
   {
-      "grouping":"Platform Development & Administration",
-      "skills":[ "Atlassian","Bamboo","Bitbucket","NGINX","MySQL","Wordpress"]
+    "grouping": "Web Development",
+    "skills": [
+      "HTML5","css3","javascript", "hugo"
+    ]
   },
   {
-      "grouping":"Data Management",
+      "grouping":"Other Languages & Tools",
+      "skills":[ 
+      
+      "git", "bash","c",
+      {"name": "C++", "icon":"cplusplus"},
+      "Haskell",
+      "Java"]
+  },
+  {
+      "grouping":"Mathematics",
       "skills":[
-        {"name":"Microsoft SQL Server","icon":"msql_server"},
-        {"name":"Oracle","icon":"database"},
-        "MongoDB",
-        {"name":"Apache Spark"}
-      ]
-  },
-  {
-    "grouping":"Containers & Cloud",
-      "skills":[
-          {"name":"BOSH","link":"https://bosh.io"},
-          {"name":"Docker","link":"https://docker.com"},
-          {"name":"AWS","link":"https://aws.amazon.com"},
-          {"name":"Google Cloud","link":"https://cloud.google.com"},
-          {"name":"Linux","link":"https://bosh.io"}
+        "Latex", 
+        {"name": "Lean", "link": "https://lean-lang.org/"},
+        "Rocq"
       ]
   }
 ]

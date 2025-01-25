@@ -92,7 +92,7 @@ h2 {
   #sideNav .navbar-brand .img-profile {
     max-width: 10rem;
     max-height: 10rem;
-    border: 0.5rem solid rgba(255, 255, 255, 0.2);
+    /*border: 0.5rem solid rgba(255, 255, 255, 0.2);*/
   }
   #sideNav .navbar-collapse {
     display: flex;
@@ -140,15 +140,15 @@ section.resume-section .resume-item .resume-date {
 }
 
 .bg-primary {
-  background-color: #BD5D38 !important;
+  background-color: #676767 !important;
 }
 
 .text-primary {
-  color: #BD5D38 !important;
+  color: #000000 !important;
 }
 
 a {
-  color: #BD5D38;
+  color: #000000;
 }
 
 a:hover, a:focus, a:active {

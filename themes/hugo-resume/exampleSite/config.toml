@@ -20,7 +20,7 @@ showContact = true
 showBoards  = true
 showCertifications = true
 showSocializations = true
-sections = ["skills","publications","creations","contributions","experience","education","blog"]
+sections = ["skills","publications","research-projects","contributions","experience","education","blog"]
 
 
 [params.google]
