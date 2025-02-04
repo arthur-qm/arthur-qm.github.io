@@ -7,9 +7,25 @@
     	<span class="">{{ .Date.Format "January 2, 2006" }}</span>
     </div>
     <div>
+		{{ if .Params.has_iframe }}
+		<script>
+			function resizeIframe(obj) {
+			  function updateHeight() {
+				obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+			  }
+		  
+			  updateHeight(); // Set initial height
+			  setInterval(updateHeight, 1000); // Update height every 5000ms
+			}
+		  </script>
+		  
+		  <iframe src="{{ .Params.iframe_link}}" 
+				  width="100%" onload="resizeIframe(this)" style="border: none;"></iframe>
+		{{ else }}
     	{{ .Content }}
 	    {{ with .Params.link }}
 	    	<p>Project link: <a href="{{ . }}">{{ . }}</a></p>{{ end }}
+		{{ end }}
 	</div>
     <div>
     	{{ with $.Page.Resources.GetMatch "gpx" }}
