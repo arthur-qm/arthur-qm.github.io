@@ -5,7 +5,7 @@
     <h1 id="{{ urlize .Title }}">{{ .Title }}</h1>
     <p>{{ .Content }}</p>
     {{ range .Data.Pages.ByWeight }}
-      {{ if ne .Type "markdown" }}
+      {{ if and (ne .Type "markdown") (ne (printf "%s%s" .Type "Summary") "latex-codesSummary") }}
         {{ partial (printf "%s%s" .Type "Summary") . }}
       {{ end }}
     {{ end }}
