@@ -1,0 +1,333 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+   <title></title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="chap1-measure-theoretic-probability.css" /> 
+<meta name="src" content="chap1-measure-theoretic-probability.tex" /> 
+ <script type="text/x-mathjax-config"> MathJax.Hub.Config({ 'fast-preview': {disabled: true}, TeX: { extensions: ["color.js","AMSmath.js"], equationNumbers: { autoNumber: "AMS" } }, extensions: ["tex2jax.js"], tex2jax: {  inlineMath: [ ["\\\(","\\\)"] ], displayMath: [ ['$$','$$'], ["\\[","\\]"] ], processEscapes: true, processEnvironments: true } }); </script> 
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>  
+</head><body 
+>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 34--><p class="noindent" >For me, the best way to learn something is to do it by explaining it to other people.
+With this in mind, I decided to make a website which supports blog posts so that I
+can document what I’m learning about. So you’ll be pretty much learning together
+with me. One of the things I was really excited about learning was measure theoretic
+probability.
+</p><!--l. 39--><p class="indent" >   If you’ve already had regular probability or statistics courses, you might be
+questioning if it is reasonable to study it all over again from the viewpoint of measure
+theory.
+</p><!--l. 42--><p class="indent" >   And you might be right. Maybe you really won’t need it. In fact, many
+statisticians don’t even use it. Depending on what you need to apply your probability
+or statistics knowledge to, there’s not a lot of things you’ll be missing out on if you
+don’t learn it.
+</p><!--l. 46--><p class="indent" >   So why does it even exist? Well, it’s just the natural way of formalizing
+probability theory. If you actually want to prove statements involving probability,
+then learning it from a measure theoretic viewpoint is the way to go.
+</p><!--l. 50--><p class="indent" >   For example, you might say that an event is “a collection of possible outcomes of
+a random experiment”. But this is too sloppy. There’s no actual mathematical
+framework behind it.
+</p><!--l. 53--><p class="indent" >   Another clear example are the convergence theorems. Measure theory helps
+deﬁning lots of modes of convergence so that we know precisely what is being
+told when you say e.g. some random variable converges to another random
+variable.
+</p><!--l. 57--><p class="indent" >   TODO: show speciﬁc example of convergence
+</p><!--l. 59--><p class="indent" >   I’ll be using Rick Durrett’s book “Probability: Theory and Examples” as a guide,
+and I’ll be following it closely. I’ll also try to introduce some of my own ideas/some
+stuﬀ I ﬁnd online.
+</p><!--l. 62--><p class="indent" >   So without further ado, let’s begin.
+</p><!--l. 64--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Probability Spaces</h3>
+   <div class="newtheorem">
+<!--l. 66--><p class="noindent" ><span class="head">
+<a 
+ id="x1-2001r1"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.1 </span>(<span 
+class="cmbx-10">Probability Space</span>)<span 
+class="cmbx-10">.</span>  </span>Let \(\Omega \) be a non-empty set, \(\mathcal{F}\) a \(\sigma \)-algebra on
+\(\Omega \) and \(P\) a measure on the measurable space \((\Omega , \mathcal{F})\) so that \(P(\Omega )=1\). We call the measure space \((\Omega , \mathcal{F}, P)\)
+a probability space.
+                                                                  
+
+                                                                  
+</p>
+   </div>
+<!--l. 72--><p class="noindent" >It follows that the domain of \(P\) is \(\mathcal{F}\). So we are assigning each element of \(\mathcal{F}\) a value
+ranging from \(0\) to \(1\). In the ”naive” probability theory, we assign probabilities to events,
+so that in our more reﬁned theory, the events are precisely the elements of
+\(\mathcal{F}\).
+</p><!--l. 76--><p class="indent" >   For this reason, \(\mathcal{F}\) is called the ˙event space˙. The set \(\Omega \) is called the ˙sample space˙
+and \(P\) is called the ˙probability function˙.
+</p><!--l. 79--><p class="indent" >   We can say that the deﬁnition of a probability space is a mathematical construct
+that provides a formal model of a ˙random process˙ or ”experiment”.
+</p><!--l. 82--><p class="indent" >   When an experiment is conducted, it results in exactly one outcome \(\omega \in \Omega \). All the
+events \(S\) in the event space \(\mathcal{F}\) that contain the selected outcome \(\omega \) are said to ”have
+occurred”. This means that when we model our probability space, the probability
+function \(P\) must be deﬁned in a way that if the experiment were repeated arbitrarily
+many times, the number of occurrences of each event as a fraction of the total
+number of experiments, will (most likely) tend towards the probability assigned to
+that event.
+</p>
+   <div class="newtheorem">
+<!--l. 88--><p class="noindent" ><span class="head">
+<a 
+ id="x1-2002r2"></a>
+<span 
+class="cmbx-10">Example 2.2 </span>(<span 
+class="cmbx-10">Throw of a standard die</span>)<span 
+class="cmbx-10">.</span>  </span>\(\Omega = \{1, 2, 3, 4, 5, 6\}\), \(\mathcal{F} = \mathcal{P}(\Omega )\) (i.e. the set of all subsets of \(\Omega \))
+and \(P(\{ i \}) = 1/6\) for all \(i \in \Omega \). Notice that this indeed deﬁnes a probability space (i.e. \(\mathcal{F}\) is indeed a
+\(\sigma \)-algebra on \(\Omega \) and although I didn’t specify the value of \(P\) at all of \(\mathcal{F}\), it is clear that
+there exists a unique probability measure on \((\Omega , \mathcal{F})\) which satisﬁes what I speciﬁed,
+namely \(P(S) = |S|/6\), where \(|S|\) is the number of elements of some \(S \in \mathcal{F}\)).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 97--><p class="noindent" ><span class="head">
+<a 
+ id="x1-2003r3"></a>
+<span 
+class="cmbx-10">Example 2.3 </span>(<span 
+class="cmbx-10">Toss of a fair coin</span>)<span 
+class="cmbx-10">.</span>  </span>Take \(\Omega = \{ \text{H}, \text{T} \}\), \(\mathcal{F} = \mathcal{P}(\Omega )\) and \(P\) so that \(P(\emptyset ) = 0\), \(P(\{ \text{H} \}) = 1/2\), \(P(\{ \text{T} \}) = 1/2\), and \(P(\{ \text{H}, \text{T} \}) = 1\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 102--><p class="noindent" ><span class="head">
+<a 
+ id="x1-2004r4"></a>
+<span 
+class="cmbx-10">Example 2.4 </span>(<span 
+class="cmbx-10">Uniform distribution</span>)<span 
+class="cmbx-10">.</span>  </span>Let \(\Omega = [0, 1]\), \(\mathcal{F} = \mathcal{B}_{\Omega }\) (i.e. the \(\sigma \)-algebra of Borel sets
+on \(\Omega \)) and \(P\) be the Borel measure on \([0, 1]\). In this case, for each \(a, b \in \Omega \) with \(a \leq b\), we have \(P((a, b)) = b - a\).
+                                                                  
+
+                                                                  
+</p>
+   </div>
+<!--l. 108--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Random elements and distributions</h3>
+   <div class="newtheorem">
+<!--l. 110--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3001r1"></a>
+<span 
+class="cmbx-10">Deﬁnition 3.1 </span>(<span 
+class="cmbx-10">Random element</span>)<span 
+class="cmbx-10">.</span>  </span>A  random  element  over  a  probability
+space \((\Omega , \mathcal{F}, P)\) is a measurable function \(X : (\Omega , \mathcal{F}) \to (S, \mathcal{S})\) where \((S, \mathcal{S})\) is an arbitrary measurable space. We
+say that the probability that \(X\) takes some value in \(T \in \mathcal{S}\) is \(P(X \in T) = P(\{\omega \in \Omega : X(\omega ) \in T \}) = P(X^{-1}(T))\) where the \(X \in T\) is just syntactic
+sugar for \(X^{-1}(T)\). In most cases, we’ll take \((S, \mathcal{S})\) to be \((\mathbb{R}, \mathcal{B}_{\mathbb{R}})\), in which case we’ll call \(X\) a random
+variable (or r.v.). If \((S, \mathcal{S}) = (\mathbb{R}^n, \mathcal{B}_{\mathbb{R}^n})\), we say \(X\) is a random vector.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 115--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3002r2"></a>
+<span 
+class="cmbx-10">Example 3.2 </span>(<span 
+class="cmbx-10">Another throw of a die</span>)<span 
+class="cmbx-10">.</span>  </span>Consider our previous throw of a
+standard die example. Let \(X\) be the function which maps each \(\omega \in \Omega \) to \(\omega \). Clearly, \(X\) is a
+measurable map from \((\Omega , \mathcal{F})\) to \((\mathbb{R}, \mathcal{B}_{\mathbb{R}})\) so that it is a random variable. Informally, this means
+that when we run our experiment, there is \(1/6\) chance of \(X\) being equal to \(i\) for each
+\(i \in \Omega \). Indeed, \(P(X=1) = P(X^{-1}(\{1\})) = P(\{1 \}) = 1/6\).
+</p>
+   </div>
+<!--l. 120--><p class="noindent" >Notice the use of the notation \(P(X=1)\). If you want to be pedantic, you are right to say that
+we haven’t deﬁned it properly. But don’t be like that. What I meant was clearly \(P(X \in \{1\})\)
+(which I’ve already deﬁned). More precisely, whenever I have \(P\) of some expression
+involving random elements satisfying something on them, I mean the set of all \(\omega \in \Omega \) for
+which the expression involving the random element is true. Of course, we
+must verify that such a set is measurable, but that’s generally clear from the
+context.
+</p>
+   <div class="newtheorem">
+<!--l. 124--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3003r3"></a>
+                                                                  
+
+                                                                  
+<span 
+class="cmbx-10">Example 3.3 </span>(<span 
+class="cmbx-10">Indicator function</span>)<span 
+class="cmbx-10">.</span>  </span>Let \(A \in \mathcal{F}\). We deﬁne the <span 
+class="cmti-10">indicator function</span> \(\mathbf{1}_{A}\)
+of \(A\) from \(\Omega \) to \(\mathbb{R}\) as follows. If \(\omega \in A\), then \(\mathbf{1}_{A}(\omega ) = 1\). If this isn’t the case, \(\mathbf{1}_{A}(\omega ) = 0\). It is easy to check that
+\(\mathbf{1}_{A}\) is a r.v.
+</p>
+   </div>
+<!--l. 128--><p class="indent" >   By the way, I’ll not bother being overly descriptive. For example, if I just say that
+\(X\) is a random element, you can immediately assume that what I mean is \(X : (\Omega , \mathcal{F}) \to (S, \mathcal{S})\) (because
+that’s the way I deﬁned it).
+</p>
+   <div class="newtheorem">
+<!--l. 131--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3004r4"></a>
+<span 
+class="cmbx-10">Deﬁnition 3.4 </span>(<span 
+class="cmbx-10">Distribution induced by a random element</span>)<span 
+class="cmbx-10">.</span>  </span>Let \(X\) be a
+random element. Then, the function \(\mu : \mathcal{S} \to \mathbb{R}^+\) deﬁned by \(\mu (A) = P(X \in A)\) is the distribution induced by
+\(X\). Notice how \(\mu \) is a measure over \((S, \mathcal{S})\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 135--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3005r5"></a>
+<span 
+class="cmbx-10">Deﬁnition 3.5 </span>(<span 
+class="cmbx-10">Distribution function induced by a random variable</span>)<span 
+class="cmbx-10">.</span>
+</span>Let \(X\) be a random variable. Then, we deﬁne its induced distribution function \(F : \mathbb{R} \to [0, 1]\)
+by \(F(x) = P(X \leq x)\).
+</p>
+   </div>
+<!--l. 139--><p class="indent" >   Notice how we deﬁne both ”distribution” and ”distribution function” induced by
+a r.v. so be careful.
+</p>
+   <div class="newtheorem">
+<!--l. 142--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3006r6"></a>
+<span 
+class="cmbx-10">Theorem 3.6 </span>(<span 
+class="cmbx-10">Properties of the distribution function</span>)<span 
+class="cmbx-10">.</span>  </span>Any distribution
+function \(F\) has the following properties: </p>
+     <ul class="itemize1">
+     <li class="itemize">\(F\) is nondecreasing
+                                                                  
+
+                                                                  
+     </li>
+     <li class="itemize">\(\lim \limits _{x \to \infty } F(x) = 1\), \(\lim \limits _{x \to -\infty } F(x) = 0\)
+     </li>
+     <li class="itemize">\(F\) is right continuous, i.e. \(\lim \limits _{y \downarrow x} F(y) = F(x)\)
+     </li>
+     <li class="itemize">If \(F^{-}(x) = \lim \limits _{y \uparrow x} F(y)\), then \(F^{-}(x) = P(X &lt; x)\)
+     </li>
+     <li class="itemize">\(P(X=x) = F(x) - F^{-}(x)\)</li></ul>
+   </div>
+<!--l. 156--><p class="indent" >   <details class="proof-details"><summary>Proof</summary><div class="proof-content"> I believe in you, you can do it! </div></details>
+</p>
+   <div class="newtheorem">
+<!--l. 158--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3007r7"></a>
+<span 
+class="cmbx-10">Theorem 3.7 </span>(<span 
+class="cmbx-10">Existence of r.v. given distribution function</span>)<span 
+class="cmbx-10">.</span>  </span> Let \(F : \mathbb{R} \to \mathbb{R}\) be a
+function satisfying all properties listed in the previous theorem. Then, there
+exists a probability space \((\Omega , \mathcal{F}, P)\) and a r.v. \(X\) over it such that the distribution function
+of \(X\) is precisely \(F\).
+</p>
+   </div>
+<!--l. 165--><p class="indent" >   <details class="proof-details"><summary>Proof</summary><div class="proof-content"> (Sketch) Just take \(\Omega = (0, 1)\), \(\mathcal{F} = \) borel sets contained in \(\Omega \), \(P\) the borel measure and \(X(\omega ) = \sup \{ y \in \mathbb{R} : F(y) &lt; \omega \}\).
+</div></details>
+</p>
+   <div class="newtheorem">
+<!--l. 167--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3008r8"></a>
+<span 
+class="cmbx-10">Remark 3.8.</span>  </span>It may happen that \(F\) is not invertible. Even so, we shall write \(F^{-1}(x)\)
+meaning \(\sup \{ y \in \mathbb{R} : F(y) &lt; x \}\) so that our \(X(\omega )\) on the proof above is \(F^{-1}(\omega )\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 171--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3009r9"></a>
+<span 
+class="cmbx-10">Remark 3.9.</span>  </span>Let \(X, Y\) be r.v.’s (when I mention multiple random elements, it’s
+implicit  that  they’re  deﬁned  on  the  same  probability  space  and  have  the
+same  codomain).  If  the  distribution  of  \(X\)  is  the  same  as  the  distribution  of
+\(Y\) (which  happens  iﬀ  they  have  the  same  distribution  function,  due  to  the
+Lebesgue-Stieltjes theorem), we say \(X\) and \(Y\) are equal in distribution and write \(X \stackrel{d}{=} Y\).
+                                                                  
+
+                                                                  
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 175--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3010r10"></a>
+<span 
+class="cmbx-10">Deﬁnition 3.10 </span>(<span 
+class="cmbx-10">Absolute continuity</span>)<span 
+class="cmbx-10">.</span>  </span>When  the  distribution  function  \(F\)
+can be written as \[ F(x) = \int \limits _{-\infty }^x f(t) dt \] we say that \(X\) has density function \(f\). In fact, we can start with
+an integrable function \(f\) satisfying \(f \geq 0\) and \(\int _{-\infty }^{\infty } f(t) dt = 1\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 181--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3011r11"></a>
+<span 
+class="cmbx-10">Deﬁnition 3.11 </span>(<span 
+class="cmbx-10">Discrete measure</span>)<span 
+class="cmbx-10">.</span>  </span>A probability measure \(P\) is said to be
+discrete if there is a countable set \(S\) with \(P(S^c) = 0\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 185--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3012r12"></a>
+<span 
+class="cmbx-10">Proposition 3.12.</span>  </span>The  set  of  discontinuities  of  a  distribution  function  \(F\)  is
+countable.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 189--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3013r13"></a>
+<span 
+class="cmbx-10">Example 3.13 </span>(<span 
+class="cmbx-10">Dense discontinuities</span>)<span 
+class="cmbx-10">.</span>  </span>Although the set of discontinuities
+of \(F\) is countable, it may be dense. Indeed, let \(\{ q_n \}_{n=1}^\infty \) be an enumeration of the rationals
+and let \(\{ \alpha _n \}_{n=1}^\infty \) be a sequence of positive real numbers such that \(\sum _{n=1}^\infty \alpha _n = 1\). Deﬁne \[ F(x) = \sum \limits _{n=1}^\infty \alpha _n \cdot \mathbf{1}_{[q_n, \infty )}(x) \] then \(F\) is
+clearly a distribution function of some random variable \(X\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 195--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3014r14"></a>
+                                                                  
+
+                                                                  
+<span 
+class="cmbx-10">Exercise 3.14.</span>  </span>Let  \((\Omega , \mathcal{F}, P)\)  be  a  probability  space  and  \(X\)  be  a  r.v. over  it  with
+distribution function \(F\). Let \(Y = F \circ X\). Clearly \(Y\) is a r.v. Show that \(P(Y \leq y) = y\) for each \(y \in [0,1]\).
+</p>
+   </div>
+    
+</body> 
+</html>
+                                                                  
+
+                                                                  
+                                                                  
+
+
