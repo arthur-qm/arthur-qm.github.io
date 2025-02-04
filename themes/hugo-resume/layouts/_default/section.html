@@ -13,7 +13,7 @@
         <h2 id="{{ urlize .Title }}"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
         <p>{{ .Content }}</p>
         {{ range .Pages }}
-          {{ if and (ne .Type "markdown") (ne (printf "%s%s" .Type .Summary) "latex-codesSummary") }}
+          {{ if and (ne .Type "markdown") (ne (printf "%s%s" .Type "Summary") "latex-codesSummary") }}
             {{ partial (printf "%s%s" .Type "Summary") . }}
           {{ end }}
         {{ end }}
