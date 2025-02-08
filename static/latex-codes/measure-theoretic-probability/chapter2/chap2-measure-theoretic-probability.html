@@ -1,0 +1,943 @@
+<!DOCTYPE html> 
+<html lang="en-US" xml:lang="en-US" > 
+<head>
+   <title></title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="chap2-measure-theoretic-probability.css" /> 
+<meta name="src" content="chap2-measure-theoretic-probability.tex" /> 
+ <script type="text/x-mathjax-config"> MathJax.Hub.Config({ 'fast-preview': {disabled: true}, TeX: { extensions: ["color.js","AMSmath.js"], equationNumbers: { autoNumber: "AMS" } }, extensions: ["tex2jax.js"], tex2jax: {  inlineMath: [ ["\\\(","\\\)"] ], displayMath: [ ['$$','$$'], ["\\[","\\]"] ], processEscapes: true, processEnvironments: true } }); </script> 
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>  
+</head><body 
+>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 34--><p class="noindent" >This is the second blog post of a series of blog posts about measure theoretic
+probability.
+</p><!--l. 36--><p class="indent" >   Every post is heavily based on Rick Durrett’s book “Probability: Theory and
+Examples”, but I’ll occasionally drop some of my own ideas/some stuﬀ I ﬁnd
+online.
+</p><!--l. 39--><p class="indent" >   Also, each post is more of a summary of the book than actual detailed notes. I’ll
+be updating it as I learn more.
+</p><!--l. 41--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Independence</h3>
+<!--l. 44--><p class="noindent" >Let \((\Omega , \mathcal{F}, P)\) be a probability space.
+</p><!--l. 46--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-30002.1"></a>Pairwise independece</h4>
+   <div class="newtheorem">
+<!--l. 48--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3001r1"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.1.</span>  </span>Two events (elements of \(\mathcal{F}\)) \(A\) and \(B\) are independent if \(P(A \cap B) = P(A) P(B)\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 52--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3002r2"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.2.</span>  </span>Two random variables \(X\) and \(Y\) are <span 
+class="cmti-10">independent </span>if for all \(C, D \in \mathcal{B}_{\mathbb{R}}\),
+</p><!--l. 55--><p class="indent" >
+                                                                  
+
+                                                                  
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability0x.png" alt="P(X ∈ C,Y ∈ D ) = P(X ∈ C )P (Y ∈ D )
+" class="math-display"  /></center> i.e. the events \(A = \{X \in C \}\) and \(B = \{Y \in D\}\) are independent.
+   </div>
+   <div class="newtheorem">
+<!--l. 59--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3003r3"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.3.</span>  </span>Two (sub)\(\sigma \)-algebras (of \(\mathcal{F}\)) \(\mathcal{F}_1\) and \(\mathcal{F}_2\) are independent if for all \(A \in \mathcal{F}_1\) and
+\(B \in \mathcal{F}_2\), the events \(A\) and \(B\) are independent.
+</p>
+   </div>
+<!--l. 64--><p class="noindent" >The second deﬁnition is a special case of the third (in the sense that \(X\) and \(Y\) are
+independent iﬀ \(\sigma (X)\) and \(\sigma (Y)\) are independent):
+</p>
+   <div class="newtheorem">
+<!--l. 66--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3004r4"></a>
+<span 
+class="cmbx-10">Theorem 2.4.</span>  </span>
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">If \(X\) and \(Y\) are independent r.v.’s then so are \(\sigma (X)\) and \(\sigma (Y)\).
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">Conversely, if \(X\), \(Y\) are r.v.’s, \(\mathcal{F}_1\) and \(\mathcal{F}_2\) are independent, \(X\) is \(\mathcal{F}_1\)-measurable and \(Y\) is
+     \(\mathcal{F}_2\)-measurable, then \(X\) and \(Y\) are independent.</dd></dl>
+   </div>
+<!--l. 82--><p class="indent" >   <details class="proof-details"><summary>Proof</summary><div class="proof-content">
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">Let \(X\) and \(Y\) be independent r.v.’s. \(\sigma (X)\) is the smallest \(\sigma \)-algebra that makes \(X\)
+     measurable and its elements are the sets \(X^{-1}(B)\) for \(B \in \mathcal{B}_{\mathbb{R}}\). Similarly, \(\sigma (Y)\) is the sets of sets
+     of the form \(Y^{-1}(B)\) for \(B \in \mathcal{B}_{\mathbb{R}}\).
+     <!--l. 82--><p class="noindent" >Hence, it is suﬃcient to prove that the sets \(X^{-1}(B)\) and \(Y^{-1}(C)\) are independent for all \(B,C \in \mathcal{B}_{\mathbb{R}}\).
+     But this is immediate from the deﬁnition of independent random variables.
+                                                                  
+
+                                                                  
+     </p></dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">Let \(C, D \in \mathcal{B}_{\mathbb{R}}\). Then, \(X^{-1}(C) \in \mathcal{F}_1\) and \(Y^{-1}(D) \in \mathcal{F}_2\). Since these two sigma algebras are independent, it
+     follows that \(X^{-1}(C)\) and \(Y^{-1}(D)\) are independent.</dd></dl>
+<!--l. 82--><p class="noindent" >\(\blacksquare \)</div></details>
+</p><!--l. 84--><p class="indent" >   The ﬁrst deﬁnition is, in turn, a special case of the second (in the sense that \(A\) and \(B\)
+are independent iﬀ \(1_A\) and \(1_B\) are independent):
+</p>
+   <div class="newtheorem">
+<!--l. 86--><p class="noindent" ><span class="head">
+<a 
+ id="x1-3009r5"></a>
+<span 
+class="cmbx-10">Theorem 2.5.</span>  </span>
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">If \(A\) and \(B\) are independent, then so are \(A^c\) and \(B\), \(A\) and \(B^c\), and \(A^c\) and \(B^c\).
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">Events \(A\) and \(B\) are independent iﬀ \(1_A\) and \(1_B\) are independent.</dd></dl>
+   </div>
+<!--l. 93--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-40002.2"></a>n-wise independence</h4>
+<!--l. 95--><p class="noindent" >More generally, we can deﬁne independence for more than two events, r.v.’s, or
+\(\sigma \)-algebras.
+</p>
+   <div class="newtheorem">
+<!--l. 97--><p class="noindent" ><span class="head">
+<a 
+ id="x1-4001r6"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.6.</span>  </span>\(\sigma \)-algebras \(\mathcal{F}_1, \mathcal{F}_2, \ldots , \mathcal{F}_n\) are <span 
+class="cmbx-10">independent </span>if whenever \(A_i \in \mathcal{F}_i\) for \(i = 1, \ldots , n\), we have
+</p><!--l. 102--><p class="indent" >   \[ P\left (\bigcap _{i=1}^n A_i\right ) = \prod _{i=1}^n P(A_i) \]
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 106--><p class="noindent" ><span class="head">
+<a 
+ id="x1-4002r7"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.7.</span>  </span>
+</p><!--l. 108--><p class="indent" >   Random variables \(X_1, \ldots , X_n\) are <span 
+class="cmbx-10">independent </span>if whenever \(B_i \in \mathcal{B}_\mathbb{R}\) for \(i = 1, \ldots , n\), we have \[ P\left (\bigcap _{i=1}^n X_i^{-1}(B_i)\right ) = \prod _{i=1}^n P(X_i \in B_i) \]
+                                                                  
+
+                                                                  
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 114--><p class="noindent" ><span class="head">
+<a 
+ id="x1-4003r8"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.8.</span>  </span>
+</p><!--l. 116--><p class="indent" >   Sets \(A_1, \ldots , A_n\) are <span 
+class="cmbx-10">independent </span>if whenever \(I \subset \{1, \ldots , n\}\), we have \[ P\left (\bigcap _{i \in I} A_i\right ) = \prod _{i \in I} P(A_i) \]
+</p>
+   </div>
+<!--l. 122--><p class="indent" >   You may think this last deﬁnition looks ”too diﬀerent” from the others. However,
+it is perfectly ﬁne:
+</p>
+   <div class="newtheorem">
+<!--l. 124--><p class="noindent" ><span class="head">
+<a 
+ id="x1-4004r9"></a>
+<span 
+class="cmbx-10">Lemma 2.9.</span>  </span>If \(A_1, \dots , A_n\) are independent then so are \(A_1^c, \dots , A_n\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 128--><p class="noindent" ><span class="head">
+<a 
+ id="x1-4005r10"></a>
+<span 
+class="cmbx-10">Theorem 2.10.</span>  </span>Events \(A_1, \dots , A_n\) are independent iﬀ \(1_{A_1}, \dots , 1_{A_n}\) are independent.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 132--><p class="noindent" ><span class="head">
+<a 
+ id="x1-4006r11"></a>
+<span 
+class="cmbx-10">Theorem 2.11.</span>  </span>Random variables \(X_1, \dots , X_n\) are independent iﬀ \(\sigma (X_1), \dots , \sigma (X_n)\) are independent.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 136--><p class="noindent" ><span class="head">
+<a 
+ id="x1-4007r12"></a>
+<span 
+class="cmbx-10">Remark 2.12.</span>  </span><span 
+class="cmti-10">Pairwise independence </span>is <span 
+class="cmbx-10">NOT </span>the same as independence.
+                                                                  
+
+                                                                  
+</p>
+   </div>
+<!--l. 140--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-50002.3"></a>Countable independece</h4>
+   <div class="newtheorem">
+<!--l. 142--><p class="noindent" ><span class="head">
+<a 
+ id="x1-5001r13"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.13.</span>  </span>Events  \(A_1, A_2, \dots \)  are  independent  if  for  all  ﬁnite  positive  integer
+sequence  \(s_1, \dots , s_n\)  the  events  \(A_{s_1}, \dots , A_{s_n}\)  are  independent.  We  deﬁne  independece  for  random
+variables and sigma algebras analogously.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 146--><p class="noindent" ><span class="head">
+<a 
+ id="x1-5002r14"></a>
+<span 
+class="cmbx-10">Theorem 2.14.</span>  </span>Events \(A_1, A_2, \dots \) are independent iﬀ r.v.’s \(1_{A_1}, 1_{A_2}, \dots \) are independent.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 150--><p class="noindent" ><span class="head">
+<a 
+ id="x1-5003r15"></a>
+<span 
+class="cmbx-10">Theorem 2.15.</span>  </span>Random variables \(X_1, X_2, \dots \) are independent iﬀ \(\sigma (X_1), \sigma (X_2), \dots \) are independent.
+</p>
+   </div>
+<!--l. 154--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.4   </span> <a 
+ id="x1-60002.4"></a>Suﬃcient conditions for independence</h4>
+   <div class="newtheorem">
+<!--l. 156--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6001r16"></a>
+                                                                  
+
+                                                                  
+<span 
+class="cmbx-10">Deﬁnition 2.16.</span>  </span>
+</p><!--l. 158--><p class="indent" >   Collections of sets \(\mathcal{A}_1, \dots , \mathcal{A}_n \subset \mathcal{F}\) are said to be independent if whenever \(A_i \in \mathcal{A}_i\) and \(I \subset \{1, \dots , n\}\) we have \(P(\cap _{i \in I} A_i) = \prod _{i \in I} P(A_i)\).
+We deﬁne independence for a countable collection of subsets of \(\mathcal{F}\) the same way
+we did in the previous subsection.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 161--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6002r17"></a>
+<span 
+class="cmbx-10">Remark 2.17.</span>  </span>If \(\mathcal{A}_i = \{A_i\}\) this is the same as independence for events.
+</p><!--l. 164--><p class="indent" >   If each of the \(\mathcal{A}_i\) is a sub-\(\sigma \)-algebra of \(\mathcal{F}\), this is the same as independence for
+\(\sigma \)-algebras.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 167--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6003r18"></a>
+<span 
+class="cmbx-10">Lemma 2.18.</span>  </span>If \(\Omega \in \mathcal{A}_i\), we can reduce the condition of independece to
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability1x.png" alt="            n∏
+P (∩ni=1Ai) =   P (Ai),  whenever Ai ∈ 𝒜i
+            i=1
+" class="math-display"  /></center>
+   </div>
+   <div class="newtheorem">
+<!--l. 172--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6004r19"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.19.</span>  </span>\(\mathcal{A} \subset \mathcal{P}(\Omega )\) is a \(\pi \)<span 
+class="cmti-10">-system  </span>if it is non-empty and closed under (ﬁnite)
+intersection.
+                                                                  
+
+                                                                  
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 176--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6005r20"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.20.</span>  </span>\(\mathcal{L} \subset \mathcal{P}(\Omega )\) is a \(\lambda \)<span 
+class="cmti-10">-system </span>if
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">\(\Omega \in \mathcal{L}\)
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">\(A, B \in \mathcal{L}\) and \(A \subset B\) implies \(B \setminus A \in \mathcal{L}\)
+     </dd><dt class="enumerate-enumitem">
+  3. </dt><dd 
+class="enumerate-enumitem">If \(A_n \in \mathcal{L}\), \(A_n \subset A_{n+1}\), \(A = \cup _{i=1}^n A_i\) then \(A \in \mathcal{L}\).</dd></dl>
+   </div>
+   <div class="newtheorem">
+<!--l. 185--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6009r21"></a>
+<span 
+class="cmbx-10">Theorem 2.21 </span>(Dynkin’s \(\pi \)-\(\lambda \) theorem)<span 
+class="cmbx-10">.</span>  </span>If \(\mathcal{P}\) is a \(\pi \)-system and \(\mathcal{L}\) is a \(\lambda \)-system that
+contains \(\mathcal{P}\) then \(\sigma (\mathcal{P}) \subset \mathcal{L}\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 189--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6010r22"></a>
+<span 
+class="cmbx-10">Theorem 2.22.</span>  </span> Suppose \(\mathcal{A}_1, \dots , \mathcal{A}_n\) are independent and each of them is a \(\pi \)-system.
+Then \(\sigma (\mathcal{A}_1), \dots , \sigma (\mathcal{A}_n)\) are independent.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 193--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6011r23"></a>
+<span 
+class="cmbx-10">Corollary 2.23.</span>  </span>The  same  holds  for  a  countable  sequence  of  independent
+\(\pi \)-systems \(\mathcal{A}_1, \mathcal{A}_2, \dots \).
+                                                                  
+
+                                                                  
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 197--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6012r24"></a>
+<span 
+class="cmbx-10">Corollary 2.24.</span>  </span>Theorem <a 
+href="#x1-6010r22">2.22<!--tex4ht:ref: thm:set-independence-implies-sigma-Independence --></a> holds for any countable set of random variables
+(the product may be inﬁnite).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 201--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6013r25"></a>
+<span 
+class="cmbx-10">Theorem 2.25.</span>  </span>In order for \(X_1, \dots , X_n\) to be independent, it is suﬃcient that for all \(x_i \in (-\infty , \infty ]\).
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability2x.png" alt="                        n
+P(X  ≤ x ,...,X  ≤ x ) = ∏ P (X ≤ x )
+   1    1      n   n   i=1    i   i
+" class="math-display"  /></center>
+   </div>
+<!--l. 208--><p class="noindent" ><details class="proof-details"><summary>Proof</summary><div class="proof-content"> Clearly each \(\mathcal{A}_i = \text{ sets of the form } \{ X_i \leq x_i \}\) is a \(\pi \)-system. Since we have allowed \(x_i = \infty \), \(\Omega \in \mathcal{A}_i\). Since \(\sigma (\mathcal{A}_i) = \sigma (X_i)\), we’re done.
+\(\blacksquare \)</div></details>
+</p>
+   <div class="newtheorem">
+<!--l. 210--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6014r26"></a>
+<span 
+class="cmbx-10">Theorem 2.26.</span>  </span>Suppose \(\mathcal{F}_{i, j}\), \(1 \leq i \leq n\), \(1 \leq j \leq m(i)\) are independent sub-\(\sigma \)-algebras of \(\mathcal{F}\) and let \(\mathcal{G}_i = \sigma (\cup _j \mathcal{F}_{i, j})\). Then \(\mathcal{G}_1, \dots , \mathcal{G}_n\)
+are independent.
+</p>
+   </div>
+                                                                  
+
+                                                                  
+<!--l. 216--><p class="indent" >   <details class="proof-details"><summary>Proof</summary><div class="proof-content"> For each \(i\), let \(\mathcal{A}_i\) denote the collection of sets of the form \(\cap _j A_{i, j}\) where \(A_{i, j} \in \mathcal{F}_{i, j}\). Thus \(\mathcal{A}_i\) is a \(\pi \)-system
+and \(\Omega \in \mathcal{A}_i, \cup _j \mathcal{F}_{i, j} \subset \mathcal{A}_i\). So the previous theorem implies the result. \(\blacksquare \)</div></details>
+</p>
+   <div class="newtheorem">
+<!--l. 218--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6015r27"></a>
+<span 
+class="cmbx-10">Corollary 2.27.</span>  </span>The  previous  theorem  holds  for  a  countable  number  of
+families \(\sigma \)-algebras, each with a countable number of members.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 222--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6016r28"></a>
+<span 
+class="cmbx-10">Theorem 2.28.</span>  </span>if  for  \(1 \leq i \leq n\),  \(1 \leq j \leq m(i)\),  \(X_{i, j}\)  are  independent  and  \(f_i : \mathbb{R}^{m(i)} \to \mathbb{R}\)  are  measurable  then  \(f_i(X_{i, 1}, \dots , X_{i, m(i)})\)  are
+independent.
+</p>
+   </div>
+<!--l. 236--><p class="indent" >   <details class="proof-details"><summary>Proof</summary><div class="proof-content"> Let \(\mathcal{F}_{i, j} = \sigma (X_{i, j})\) and \(\mathcal{G}_i = \sigma (\cup _j \mathcal{F}_{i, j})\).
+</p><!--l. 236--><p class="indent" >   Let \(V_i\) denote the random vector \((X_{i, 1}, \dots , X_{i, m(i)})\) and \(S_i =\) sets of the form \(\{ \omega : V_i \in A_1 \times \dots \times A_{m(i)} \}\) where each \(A_j\) is Borel. Notice
+that the sets of the form \(A_1 \times \dots \times A_{m(i)}\) generate \(R^{m(i)}\). This means that \(\sigma (S_i)\) is precisely the smallest
+\(\sigma \)-algebra that makes \(V_i\) measurable i.e. \(\sigma (S_i) = \sigma (V_i)\).
+</p><!--l. 236--><p class="indent" >   Also, notice that \(\{ \omega : V_i \in A_1 \times \dots \times A_{m(i)} \} =\) \(\{\omega : \forall 1 \leq j \leq m(i), X_{i,j} \in A_j \} = \) \(\cap _j X_{i, j}^{-1}(A_j) \). Since each element of this intersection belongs to \(\mathcal{G}_i\), we have \(S_i \subset \mathcal{G}_i\),
+hence \(\sigma (S_i) \subset \mathcal{G}_i\).
+</p><!--l. 236--><p class="indent" >   This means that \(G_i = f_i(X_{i, 1}, \dots , X_{i, m(i)})\) is \(\mathcal{G}_i\) measurable, because if \(B_1 \in \mathcal{B}_{\mathbb{R}}\), then \(f_i^{-1}(B_1) = B_2 \in \mathcal{B}_{\mathbb{R}^{m(i)}}\). Now, \(V_i^{-1}(B_2) \in \sigma (V_i) = \sigma (S_i)\). Therefore,
+\(G_i^{-1}(B_1) \in \mathcal{G}_i\).
+</p><!--l. 236--><p class="indent" >   Since each \(G_i\) is \(\mathcal{G}_i\) measurable, we have \(\sigma (G_i) \subset \mathcal{G}_i\). So by the last theorem, the \(\mathcal{G}_i\) are
+independent. Therefore, the \(\sigma (G_i)\) are also independent and hence the \(G_i\) are independent.
+\(\blacksquare \)</div></details>
+</p>
+   <div class="newtheorem">
+<!--l. 238--><p class="noindent" ><span class="head">
+<a 
+ id="x1-6017r29"></a>
+<span 
+class="cmbx-10">Corollary 2.29.</span>  </span>The previous theorem also applies to a countable set of ﬁnite
+families of random variables.
+</p>
+   </div>
+                                                                  
+
+                                                                  
+<!--l. 243--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.5   </span> <a 
+ id="x1-70002.5"></a>Independence, Distribution, and Expectation</h4>
+   <div class="newtheorem">
+<!--l. 245--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7001r30"></a>
+<span 
+class="cmbx-10">Theorem 2.30.</span>  </span>If \(X_1, \dots , X_n\) are random variables and \(X_i\) has distribution \(\mu _i\), then \((X_1, \dots , X_n)\) has
+distribution \(\mu _1 \times \dots \times \mu _n\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 249--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7002r31"></a>
+<span 
+class="cmbx-10">Theorem 2.31.</span>  </span>Suppose \( X \) and \( Y \) are independent and have distributions \( \mu \) and \( \nu \).
+If \( h : \mathbb{R}^2 \to \mathbb{R} \) is a measurable function with \( h \geq 0 \) or \( E|h(X, Y)| &lt; \infty \), then \[ E h(X, Y) = \int \int h(x, y) \, \mu (dx) \, \nu (dy). \]
+</p><!--l. 255--><p class="indent" >   In particular, if \( h(x, y) = f(x) g(y) \) where \( f, g : \mathbb{R} \to \mathbb{R} \) are measurable functions with \( f, g \geq 0 \) or \( E|f(X)| \) and \( E|g(Y)| &lt; \infty \), then \[ E f(X) g(Y) = E f(X) \cdot E g(Y). \]
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 261--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7003r32"></a>
+<span 
+class="cmbx-10">Theorem 2.32.</span>  </span>If \( X_1, \dots , X_n \) are independent and have (a) \( X_i \geq 0 \) for all \( i \), or (b) \( E|X_i| &lt; \infty \) for all \( i \), then
+\[ E \left ( \prod _{i=1}^n X_i \right ) = \prod _{i=1}^n E X_i \] i.e., the expectation on the left exists and has the value given on the right.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 269--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7004r33"></a>
+<span 
+class="cmbx-10">Deﬁnition 2.33.</span>  </span>Two random variables \(X\) and \(Y\) with \(EX^2 &lt; \infty \), \(EY^2 &lt; \infty \) that have \(E(XY)=EXEY\) are said to
+be <span 
+class="cmti-10">uncorrelated</span>. The ﬁnite second moments are needed so that we know \(E|XY| &lt; \infty \) by the
+Cauchy-Schwarz inequality.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 273--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7005r34"></a>
+                                                                  
+
+                                                                  
+<span 
+class="cmbx-10">Theorem 2.34.</span>  </span>If \(X\) and \(Y\) are independent, \(F(x) = P(X \leq x)\), and \(G(y) = P(Y \leq y)\), then
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability3x.png" alt="               ∫
+P (X + Y ≤ z) =   F(z − y)dG (y)
+" class="math-display"  /></center> by the way, \(dG(y)\) is the same as \(\nu (dy)\), as previously mentioned in the previous chapter.
+   </div>
+   <div class="newtheorem">
+<!--l. 279--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7006r35"></a>
+<span 
+class="cmbx-10">Theorem 2.35.</span>  </span>Suppose that \(X\) with density \(f\) and \(Y\) with distribution function \(G\)
+are independent. Then \(X+Y\) has density
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability4x.png" alt="       ∫
+h (x) =   f(x− y)dG(y)
+" class="math-display"  /></center> When \(Y\) has density \(g\), the last formula can be written as
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability5x.png" alt="      ∫
+h(x) =   f(x − y)g(y)dy
+" class="math-display"  /></center>
+   </div>
+   <div class="newtheorem">
+<!--l. 286--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7007r36"></a>
+<span 
+class="cmbx-10">Example 2.36.</span>  </span>The gamma density with parameters \( \alpha \) and \( \lambda \) is given by \[ f(x) = \begin{cases} \frac{\lambda ^\alpha x^{\alpha -1} e^{-\lambda x}}{\Gamma (\alpha )} &amp; \text{for } x \geq 0, \\ 0 &amp; \text{for } x &lt; 0, \end{cases} \] where
+\( \Gamma (\alpha ) = \int _0^\infty x^{\alpha -1} e^{-x} \, dx \).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 298--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7008r37"></a>
+<span 
+class="cmbx-10">Theorem 2.37.</span>  </span>If  \( X = \text{gamma}(\alpha , \lambda ) \)  and  \( Y = \text{gamma}(\beta , \lambda ) \)  are  independent,  then  \( X + Y \)  is  \( \text{gamma}(\alpha + \beta , \lambda ) \).  Consequently,  if  \( X_1, \dots , X_n \)  are
+independent exponential(\( \lambda \)) random variables, then \( X_1 + \cdots + X_n \) has a gamma(\( n, \lambda \)) distribution.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 302--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7009r38"></a>
+<span 
+class="cmbx-10">Example 2.38.</span>  </span>Normal density with mean \(\mu \) and variance \(\sigma ^2\): \[ (2\pi \sigma ^2)^{-1/2} \exp \left (-\frac{(x - \mu )^2}{2\sigma ^2}\right ). \]
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 309--><p class="noindent" ><span class="head">
+<a 
+ id="x1-7010r39"></a>
+<span 
+class="cmbx-10">Theorem 2.39.</span>  </span>If \(X \sim \operatorname{normal}(\mu , a)\) and \(Y \sim \operatorname{normal}(\nu , b)\) are independent then \(X + Y \sim \operatorname{normal}(\mu + \nu , a + b)\).
+</p>
+   </div>
+                                                                  
+
+                                                                  
+<!--l. 313--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-80003"></a>Constructing Independent Random Variables</h3>
+<!--l. 315--><p class="noindent" >It’s easy to construct \(n\) independent random variables \(X_1, \dots , X_n\) with \(n\) given distribution
+functions \(F_1(x)\), \( \dots , F_n(x)\). We can just take \(\Omega = \mathbb{R}^n\), \(\mathcal{F} = \mathcal{B}_{\mathbb{R}^n}\) and \(P\) such that
+</p><!--l. 317--><p class="indent" >
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability6x.png" alt="P ((a1,b1]× ⋅⋅⋅× (an,bn ]) = (F1(b1)− F1(a1))⋅⋅⋅⋅⋅(Fn(bn) − Fn (an))
+" class="math-display"  /></center>
+<!--l. 319--><p class="indent" >   (more precisely, \(P = \mu _1 \times \mu _n\))
+</p><!--l. 321--><p class="indent" >   But our procedure of constructing product measures fails when we want to
+construct inﬁnitely many independent random variables. In other words, we can’t
+just take \(\Omega = \mathbb{R}^\infty \), \(\mathcal{F} = \mathcal{B}_{\mathbb{R}^\infty }\) and \(P = \mu _1 \times \mu _2 \times \dots \).
+</p><!--l. 323--><p class="indent" >   To do that, we need a stronger result
+</p>
+   <div class="newtheorem">
+<!--l. 325--><p class="noindent" ><span class="head">
+<a 
+ id="x1-8001r1"></a>
+<span 
+class="cmbx-10">Theorem 3.1 </span>(<span 
+class="cmbx-10">Kolmogorov’s Extension Theorem</span>)<span 
+class="cmbx-10">.</span>  </span>Suppose we are given
+probability measures \(\mu _n\) on \((\mathbb{R}^n, \mathcal{B}_{\mathbb{R}^n})\) that are consistent, that is,
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability7x.png" alt="μn+1((a1,b1]× ⋅⋅⋅× (an,bn]× ℝ) = μn((a1,b1]× ⋅⋅⋅× (an,bn])
+" class="math-display"  /></center> Then there is a unique probability measure \(P\) on \((\mathbb{R}^n, \mathcal{B}_{\mathbb{R}^n})\), with
+                                                                  
+
+                                                                  
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability8x.png" alt="P ({ω : ωi ∈ (ai,bi],1 ≤ i ≤ n}) = μn((a1,b1]× ⋅⋅⋅× (an,bn])
+" class="math-display"  /></center>
+   </div>
+   <div class="newtheorem">
+<!--l. 332--><p class="noindent" ><span class="head">
+<a 
+ id="x1-8002r2"></a>
+<span 
+class="cmbx-10">Deﬁnition 3.2.</span>  </span>\((S, \mathcal{S})\) is said to be a <span 
+class="cmti-10">standard Borel space </span>if there is a \(1-1\) map \(\varphi \) from \(S\)
+into \(\mathbb{R}\) so that \(\varphi \) and \(\varphi ^{-1}\) are both measurable.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 336--><p class="noindent" ><span class="head">
+<a 
+ id="x1-8003r3"></a>
+<span 
+class="cmbx-10">Theorem 3.3.</span>  </span>If \(S\) is a Borel subset of a complete separable metric space \(M\), and
+\(\mathcal{S}\) is the collection of Borel subsets of \(S\), then \((S, \mathcal{S})\) is a standard Borel space.
+</p>
+   </div>
+                                                                  
+
+                                                                  
+<!--l. 342--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-90004"></a>Weak Laws of Large Numbers</h3>
+   <div class="newtheorem">
+<!--l. 344--><p class="noindent" ><span class="head">
+<a 
+ id="x1-9001r1"></a>
+<span 
+class="cmbx-10">Deﬁnition 4.1.</span>  </span>\(Y_n\) <span 
+class="cmti-10">converges in probability </span>to \(Y\) if for all \(\epsilon &gt; 0\), \(P(|Y_n - Y| &gt; \epsilon ) \to 0\) as \(n \to \infty \).
+</p>
+   </div>
+<!--l. 348--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-100004.1"></a>L2 Weak laws</h4>
+   <div class="newtheorem">
+<!--l. 350--><p class="noindent" ><span class="head">
+<a 
+ id="x1-10001r2"></a>
+<span 
+class="cmbx-10">Deﬁnition 4.2.</span>  </span>
+</p><!--l. 352--><p class="indent" >   A family of random variables \(X_i\) (\(i \in I\)) with \(EX_i^2 &lt; \infty \) is said to be <span 
+class="cmti-10">uncorrelated </span>if we have
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability9x.png" alt="E(XiXj) = EXiEXj   whenever i ⁄= j
+" class="math-display"  /></center>
+   </div>
+   <div class="newtheorem">
+<!--l. 356--><p class="noindent" ><span class="head">
+<a 
+ id="x1-10002r3"></a>
+                                                                  
+
+                                                                  
+<span 
+class="cmbx-10">Theorem 4.3.</span>  </span>Let \(X_1, \dots , X_n\) have \(EX_i^2 &lt; \infty \) and be uncorrelated. Then
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability10x.png" alt="var(X1 +⋅⋅⋅+ Xn ) = var(X1 )+ ⋅⋅⋅+ var(Xn)
+" class="math-display"  /></center>
+   </div>
+   <div class="newtheorem">
+<!--l. 361--><p class="noindent" ><span class="head">
+<a 
+ id="x1-10003r4"></a>
+<span 
+class="cmbx-10">Lemma 4.4.</span>  </span>If \(p &gt; 0\) and \(E|Z_n|^p \to 0\) then \(Z_n \to 0\) in probability.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 365--><p class="noindent" ><span class="head">
+<a 
+ id="x1-10004r5"></a>
+<span 
+class="cmbx-10">Theorem 4.5 </span>(\(L^2\) <span 
+class="cmbx-10">weak law</span>)<span 
+class="cmbx-10">.</span>  </span>Let \(X_1, X_2, \dots \) be uncorrelated random variables with \(EX_i = \mu \) and
+\(\operatorname{var}(X_i) \leq C &lt; \infty \). If \(S_n = X_1 + \dots + X_n\) then as \(n \to \infty \), \(S_n/n \to \mu \) in \(L^2\) and in probability.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 369--><p class="noindent" ><span class="head">
+<a 
+ id="x1-10005r6"></a>
+<span 
+class="cmbx-10">Deﬁnition 4.6.</span>  </span>When \(X_1, X_2, \dots \) are all independent random variables with the same
+distributon, we say they’re <span 
+class="cmti-10">independent and identically distributed (i.i.d.)</span>.
+</p>
+   </div>
+<!--l. 373--><p class="noindent" >It’s possible to prove some interesting things with probability.
+</p>
+                                                                  
+
+                                                                  
+   <div class="newtheorem">
+<!--l. 375--><p class="noindent" ><span class="head">
+<a 
+ id="x1-10006r7"></a>
+<span 
+class="cmbx-10">Example 4.7 </span>(<span 
+class="cmbx-10">Polynomial approximation</span>)<span 
+class="cmbx-10">.</span>  </span>Let \(f\) be a continuous function
+on \([0, 1]\), and let
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability11x.png" alt="       ∑n  (n ) m      n− m
+fn(x) =     m  x  (1 − x)   f(m ∕n)
+       m=0
+" class="math-display"  /></center> Then as \(n \to \infty \):
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability12x.png" alt=" sup |fn(x|− f(x)| → 0
+x∈[0,1]
+" class="math-display"  /></center>
+   </div>
+   <div class="newtheorem">
+<!--l. 382--><p class="noindent" ><span class="head">
+<a 
+ id="x1-10007r8"></a>
+<span 
+class="cmbx-10">Example 4.8 </span>(<span 
+class="cmbx-10">A high-dimensional cube is almost the boundary of a ball</span>)<span 
+class="cmbx-10">.</span>
+</span>Let \(A_{n, \varepsilon } = \{x \in \mathbb{R}^n : (1 - \varepsilon ) \sqrt{n/3} &lt; |x| &lt; (1 + \varepsilon ) \sqrt{n/3} \}\). Then for any \(\varepsilon &gt; 0\), \(|A_{n, \varepsilon } \cap (-1, 1)^n| / 2^n \to 1\).
+</p>
+   </div>
+                                                                  
+
+                                                                  
+<!--l. 386--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-110004.2"></a>Triangular arrays</h4>
+<!--l. 388--><p class="noindent" >Many classical limit theorems in probability concern arrays \(X_{n, k}\) of random variables and
+investigate their limiting behavior of the row sums \(S_n = X_{n, 1} + \dots + X_{n, n}\). In most cases, we assume that
+the random variables on each row are independent.
+</p>
+   <div class="newtheorem">
+<!--l. 390--><p class="noindent" ><span class="head">
+<a 
+ id="x1-11001r9"></a>
+<span 
+class="cmbx-10">Theorem 4.9.</span>  </span>(Here \(X_{n, 1}, \dots , X_{n, n}\) can be any sequence of random variables) Let \(\mu _n = ES_n\), \(\sigma _n^2 = \operatorname{var}(S_n)\). If \(\sigma _n^2/b_n^2 \to 0\) then
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability13x.png" alt="Sn-−-μn → 0  , in probability
+   bn
+" class="math-display"  /></center>
+   </div>
+<!--l. 396--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">4.3   </span> <a 
+ id="x1-120004.3"></a>Truncation</h4>
+   <div class="newtheorem">
+<!--l. 398--><p class="noindent" ><span class="head">
+<a 
+ id="x1-12001r10"></a>
+<span 
+class="cmbx-10">Deﬁnition 4.10.</span>  </span>To truncate a random variable at level \(M\) means to consider
+</p>
+                                                                  
+
+                                                                  
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability14x.png" alt="X-= X1 (|X|≤M )
+" class="math-display"  /></center>
+   </div>
+<!--l. 403--><p class="noindent" >To extend the weak law to random variables without a second moment, we will
+truncate and then use Chebyshev’s inequality.
+</p>
+   <div class="newtheorem">
+<!--l. 405--><p class="noindent" ><span class="head">
+<a 
+ id="x1-12002r11"></a>
+<span 
+class="cmbx-10">Theorem 4.11 </span>(<span 
+class="cmbx-10">Weak law for triangular arrays</span>)<span 
+class="cmbx-10">.</span>  </span>For each \(n\), let \(X_{n, k}\) (\(1 \leq k \leq n\)) be
+independent. Let \(b_n &gt; 0\) with \(b_n \to \infty \), and let \(\overline{X}_{n, k} = X_{n, k} 1_{(|X_{n, k}| \leq b_n)}\). Suppose that as \(n \to \infty \)
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">\(\sum _{k=1}^n P(|X_{n, k}| &gt; b_n) \to 0\) and
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">\(b_n^{-2} \sum _{k=1}^n E \overline{X}_{n, k}^2 \to 0\)</dd></dl>
+<!--l. 411--><p class="noindent" >If we let \(S_n = X_{n, 1} + \dots + X_{n, n}\) and put \(a_n = \sum _{k=1}^n E \overline{X}_{n, k}\), then
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability15x.png" alt="(Sn − an)∕bn → 0, in probability
+" class="math-display"  /></center>
+   </div>
+   <div class="newtheorem">
+<!--l. 415--><p class="noindent" ><span class="head">
+<a 
+ id="x1-12005r12"></a>
+<span 
+class="cmbx-10">Theorem 4.12 </span>(<span 
+class="cmbx-10">Weak law of large numbers</span>)<span 
+class="cmbx-10">.</span>  </span>Let \(X_1, X_2, \dots \) be i.i.d. with
+                                                                  
+
+                                                                  
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability16x.png" alt="xP(|Xi| &#x003E; x) → 0 as x → ∞
+" class="math-display"  /></center> Let \(S_n = X_1 + \dots + X_n\) and let \(\mu _n = E(X_1 1_{|X_1| \leq n})\). Then \(S_n/n - \mu \to 0\) in probability.
+   </div>
+   <div class="newtheorem">
+<!--l. 421--><p class="noindent" ><span class="head">
+<a 
+ id="x1-12006r13"></a>
+<span 
+class="cmbx-10">Lemma 4.13.</span>  </span>If \(Y \geq 0\) and \(p &gt; 0\) then \(E(Y^p) = \int _0^\infty p y^{p-1} P(Y &gt; y) dy\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 425--><p class="noindent" ><span class="head">
+<a 
+ id="x1-12007r14"></a>
+<span 
+class="cmbx-10">Remark 4.14.</span>  </span>Taking  \(p = 1 - \varepsilon \)  here  shows  that  \(xP(|X_1| &gt; x) \to 0\)  implies  \(E|X_1|^{1- \varepsilon } &lt; \infty \).  This  means  that  the
+assumption made in the previous theorem is not much weaker than ﬁnite mean.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 429--><p class="noindent" ><span class="head">
+<a 
+ id="x1-12008r15"></a>
+<span 
+class="cmbx-10">Theorem 4.15.</span>  </span>Let \(X_1, X_2, \dots \) be i.i.d. with \(E|X_i| &lt; \infty \) and let \(S_n = X_1 + \dots + X_n\) and let \(\mu = EX_1\). Then \(S_n/n \to \mu \) in probability.
+</p>
+   </div>
+                                                                  
+
+                                                                  
+<!--l. 435--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-130005"></a>Borel-Cantelli Lemmas</h3>
+<!--l. 437--><p class="noindent" >Notice that
+</p><!--l. 439--><p class="indent" >
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability17x.png" alt="limsup1An = 1(limsupAn)  liminf 1An = 1(liminfAn)
+n→ ∞                   n→∞
+" class="math-display"  /></center>
+   <div class="newtheorem">
+<!--l. 441--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13001r1"></a>
+<span 
+class="cmbx-10">Exercise 5.1.</span>  </span>Prove that \(P(\limsup A_n) \geq \limsup P(A_n)\) and \(P(\liminf A_n) \leq \liminf P(A_n)\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 445--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13002r2"></a>
+<span 
+class="cmbx-10">Deﬁnition 5.2.</span>  </span>It is common to write \(\limsup A_n = \{ \omega : \omega \in A_n \text{ i.o.} \}\) where i.o. means inﬁnitely often.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 449--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13003r3"></a>
+<span 
+class="cmbx-10">Theorem 5.3 </span>(<span 
+class="cmbx-10">Borel-Cantelli lemma</span>)<span 
+class="cmbx-10">.</span>  </span>If \(\sum _{n=1}^\infty P(A_n) &lt; \infty \) then \(P(A_n \text{ i.o.}) = 0\) (in the sense of \(P(\limsup A_n)=0\)).
+                                                                  
+
+                                                                  
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 454--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13004r4"></a>
+<span 
+class="cmbx-10">Theorem 5.4.</span>  </span>\(X_n \to X\) in  probability  iﬀ  for  every  subsequence  \(X_{n(m)}\)  there  is  a  further
+subsequence \(X_{n(m_k)}\) that converges a.s. to \(X\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 458--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13005r5"></a>
+<span 
+class="cmbx-10">Theorem 5.5.</span>  </span>If \(f\) is continuous and \(X_n \to X\) in probability then \(f(X_n) \to f(X)\) in probability. If, in
+addition, \(f\) is bounded then \(Ef(X_n) \to Ef(X)\).
+</p>
+   </div>
+<!--l. 462--><p class="indent" >   Our ﬁrst law of large numbers tells us:
+</p>
+   <div class="newtheorem">
+<!--l. 464--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13006r6"></a>
+<span 
+class="cmbx-10">Theorem 5.6.</span>  </span>If \(X_1, X_2, \dots \) are i.i.d. with \(EX_i \to \mu \) and \(EX_i^4 &lt; \infty \) and \(S_n = X_1 + \dots + X_n\) then \(S_n/n \to \mu \) a.s.
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 468--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13007r7"></a>
+<span 
+class="cmbx-10">Theorem 5.7 </span>(<span 
+class="cmbx-10">The second Borel-Cantelli lemma</span>)<span 
+class="cmbx-10">.</span>  </span>If  the  events  \(A_n\)  are
+independent then \(\sum P(A_n) = \infty \) implies \(P(\limsup A_n) = 1\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 472--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13008r8"></a>
+                                                                  
+
+                                                                  
+<span 
+class="cmbx-10">Theorem 5.8.</span>  </span>If \(X_1, X_2, \dots \) are i.i.d. with \(E|X_i| = \infty \), then \(P(|X_n| \geq n \text{ i.o.}) = 1\). So if \(S_n = X_1 + \dots + X_n\) then \(P(\lim S_n/n \text{ exists and } \in (-\infty , \infty )) = 0\).
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 476--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13009r9"></a>
+<span 
+class="cmbx-10">Theorem 5.9.</span>  </span>If \(A_1, A_2, \dots \) are pairwise independent and \(\sum _{n=1}^\infty P(A_n) = \infty \), then as \(n \to \infty \)
+</p>
+   <center class="math-display" >
+<img 
+src="chap2-measure-theoretic-probability18x.png" alt="  n
+  ∑  1Am
+-m=1------→  1
+ n∑  P(Am )
+m=1
+" class="math-display"  /></center>
+   </div>
+<!--l. 481--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">5.1   </span> <a 
+ id="x1-140005.1"></a>Strong Law of Large Numbers</h4>
+   <div class="newtheorem">
+<!--l. 483--><p class="noindent" ><span class="head">
+<a 
+ id="x1-14001r10"></a>
+<span 
+class="cmbx-10">Theorem 5.10.</span>  </span>Let \(X_1, X_2, \dots \) be pairwise independent identically distributed random
+variables with \(E|X_i| &lt; \infty \). Let \(EX_i = \mu \) and \(S_n = X_1 + \dots + X_n\). Then \(S_n/n \to \mu \) a.s. as \(n \to \infty \).
+</p>
+   </div>
+    
+</body> 
+</html>
+                                                                  
+
+                                                                  
+                                                                  
+
+

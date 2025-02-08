@@ -1,0 +1,487 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{enumitem}
+
+%-------------------------------
+% Theorem Environments Setup
+%-------------------------------
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+
+
+
+%-------------------------------
+% Hyperlink Reference Command
+%-------------------------------
+\newcommand{\tref}[1]{\ref{#1}}
+
+%-------------------------------
+% Document Content
+%-------------------------------
+\begin{document}
+
+\section{Introduction}
+
+This is the second blog post of a series of blog posts about measure theoretic probability.
+
+Every post is heavily based on Rick Durrett's book ``Probability: Theory and Examples'', but I'll occasionally
+drop some of my own ideas/some stuff I find online.
+
+Also, each post is more of a summary of the book than actual detailed notes. I'll be updating it as I learn more.
+
+\section{Independence}
+
+
+Let $(\Omega, \mathcal{F}, P)$ be a probability space.
+
+\subsection{Pairwise independece}
+
+\begin{definition}
+    Two events (elements of $\mathcal{F}$) $A$ and $B$ are independent if $P(A \cap B) = P(A) P(B)$.
+\end{definition}
+
+\begin{definition}
+    Two random variables $X$ and $Y$ are \emph{independent} if for all $C, D \in \mathcal{B}_{\mathbb{R}}$,
+
+    $$ P(X \in C, Y \in D) = P(X \in C) P(Y \in D)$$
+    i.e. the events $A = \{X \in C \}$ and $B = \{Y \in D\}$ are independent.
+\end{definition}
+
+\begin{definition}
+    Two (sub)$\sigma$-algebras (of $\mathcal{F}$) $\mathcal{F}_1$ and $\mathcal{F}_2$ are independent if for all $A \in \mathcal{F}_1$ and $B \in \mathcal{F}_2$, the events $A$ and $B$ are independent.
+
+\end{definition}
+
+The second definition is a special case of the third (in the sense that $X$ and $Y$ are independent iff $\sigma(X)$ and $\sigma(Y)$ are independent):
+
+\begin{theorem}
+    \begin{enumerate}
+        \item If $X$ and $Y$ are independent r.v.'s then so are $\sigma(X)$ and $\sigma(Y)$.
+        \item Conversely, if $X$, $Y$ are r.v.'s, $\mathcal{F}_1$ and $\mathcal{F}_2$ are independent, $X$ is $\mathcal{F}_1$-measurable and $Y$ is $\mathcal{F}_2$-measurable, then $X$ and $Y$ are independent.
+    \end{enumerate}
+\end{theorem}
+
+\myproof{
+    \begin{enumerate}
+        \item Let $X$ and $Y$ be independent r.v.'s. $\sigma(X)$ is the smallest $\sigma$-algebra that makes $X$ measurable and
+              its elements are the sets $X^{-1}(B)$ for $B \in \mathcal{B}_{\mathbb{R}}$. Similarly, $\sigma(Y)$ is the sets of sets of the form $Y^{-1}(B)$ for $B \in \mathcal{B}_{\mathbb{R}}$.
+
+              Hence, it is sufficient to prove that the sets $X^{-1}(B)$ and $Y^{-1}(C)$ are independent for all $B,C \in \mathcal{B}_{\mathbb{R}}$. But this is immediate from the definition of independent random variables.
+
+        \item Let $C, D \in \mathcal{B}_{\mathbb{R}}$. Then, $X^{-1}(C) \in \mathcal{F}_1$ and $Y^{-1}(D) \in \mathcal{F}_2$. Since these two sigma algebras are independent, it follows that $X^{-1}(C)$ and $Y^{-1}(D)$ are independent.
+    \end{enumerate}
+}
+
+The first definition is, in turn, a special case of the second (in the sense that $A$ and $B$ are independent iff $1_A$ and $1_B$ are independent):
+
+\begin{theorem}
+    \begin{enumerate}
+        \item If $A$ and $B$ are independent, then so are $A^c$ and $B$, $A$ and $B^c$, and $A^c$ and $B^c$.
+        \item Events $A$ and $B$ are independent iff $1_A$ and $1_B$ are independent.
+    \end{enumerate}
+\end{theorem}
+
+\subsection{n-wise independence}
+
+More generally, we can define independence for more than two events, r.v.'s, or $\sigma$-algebras.
+
+\begin{definition}
+    $\sigma$-algebras $\mathcal{F}_1, \mathcal{F}_2, \ldots, \mathcal{F}_n$ are \textbf{independent} if whenever $A_i \in \mathcal{F}_i$ for $i = 1, \ldots, n$, we have
+
+    \[
+        P\left(\bigcap_{i=1}^n A_i\right) = \prod_{i=1}^n P(A_i)
+    \]
+
+\end{definition}
+
+\begin{definition}
+
+    Random variables $X_1, \ldots, X_n$ are \textbf{independent} if whenever $B_i \in \mathcal{B}_\mathbb{R}$ for $i = 1, \ldots, n$, we have
+    \[
+        P\left(\bigcap_{i=1}^n X_i^{-1}(B_i)\right) = \prod_{i=1}^n P(X_i \in B_i)
+    \]
+\end{definition}
+
+\begin{definition}
+
+    Sets $A_1, \ldots, A_n$ are \textbf{independent} if whenever $I \subset \{1, \ldots, n\}$, we have
+    \[
+        P\left(\bigcap_{i \in I} A_i\right) = \prod_{i \in I} P(A_i)
+    \]
+\end{definition}
+
+You may think this last definition looks "too different" from the others. However, it is perfectly fine:
+
+\begin{lemma}
+    If $A_1, \dots, A_n$ are independent then so are $A_1^c, \dots, A_n$.
+\end{lemma}
+
+\begin{theorem}
+    Events $A_1, \dots, A_n$ are independent iff $1_{A_1}, \dots, 1_{A_n}$ are independent.
+\end{theorem}
+
+\begin{theorem}
+    Random variables $X_1, \dots, X_n$ are independent iff $\sigma(X_1), \dots, \sigma(X_n)$ are independent.
+\end{theorem}
+
+\begin{remark}
+    \emph{Pairwise independence} is \textbf{NOT} the same as independence.
+\end{remark}
+
+\subsection{Countable independece}
+
+\begin{definition}
+    Events $A_1, A_2, \dots$ are independent if for all finite positive integer sequence $s_1, \dots, s_n$ the events $A_{s_1}, \dots, A_{s_n}$ are independent. We define independece for random variables and sigma algebras analogously.
+\end{definition}
+
+\begin{theorem}
+    Events $A_1, A_2, \dots$ are independent iff r.v.'s $1_{A_1}, 1_{A_2}, \dots$ are independent.
+\end{theorem}
+
+\begin{theorem}
+    Random variables $X_1, X_2, \dots$ are independent iff $\sigma(X_1), \sigma(X_2), \dots$ are independent.
+\end{theorem}
+
+\subsection{Sufficient conditions for independence}
+
+\begin{definition}
+
+    Collections of sets $\mathcal{A}_1, \dots, \mathcal{A}_n \subset \mathcal{F}$ are said to be independent if whenever $A_i \in \mathcal{A}_i$ and $I \subset \{1, \dots, n\}$ we have $P(\cap_{i \in I} A_i) = \prod_{i \in I} P(A_i)$. We define independence for a countable collection of subsets of $\mathcal{F}$ the same way we did in the previous subsection.
+\end{definition}
+
+\begin{remark}
+    If $\mathcal{A}_i = \{A_i\}$ this is the same as independence for events.
+
+    If each of the $\mathcal{A}_i$ is a sub-$\sigma$-algebra of $\mathcal{F}$, this is the same as independence for $\sigma$-algebras.
+\end{remark}
+
+\begin{lemma}
+    If $\Omega \in \mathcal{A}_i$, we can reduce the condition of independece to
+    $$ P(\cap_{i=1}^n A_i) = \prod\limits_{i=1}^n P(A_i), \quad \text{whenever } A_i \in \mathcal{A}_i$$
+\end{lemma}
+
+\begin{definition}
+    $\mathcal{A} \subset \mathcal{P}(\Omega)$ is a $\pi$\emph{-system} if it is non-empty and closed under (finite) intersection.
+\end{definition}
+
+\begin{definition}
+    $\mathcal{L} \subset \mathcal{P}(\Omega)$ is a $\lambda$\emph{-system} if
+    \begin{enumerate}
+        \item $\Omega \in \mathcal{L}$
+        \item $A, B \in \mathcal{L}$ and $A \subset B$ implies $B \setminus A \in \mathcal{L}$
+        \item If $A_n \in \mathcal{L}$, $A_n \subset A_{n+1}$, $A = \cup_{i=1}^n A_i$ then $A \in \mathcal{L}$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Dynkin's $\pi$-$\lambda$ theorem]
+    If $\mathcal{P}$ is a $\pi$-system and $\mathcal{L}$ is a $\lambda$-system that contains $\mathcal{P}$ then $\sigma(\mathcal{P}) \subset \mathcal{L}$.
+\end{theorem}
+
+\begin{theorem}\label{thm:set-independence-implies-sigma-Independence}
+    Suppose $\mathcal{A}_1, \dots, \mathcal{A}_n$ are independent and each of them is a $\pi$-system. Then $\sigma(\mathcal{A}_1), \dots, \sigma(\mathcal{A}_n)$ are independent.
+\end{theorem}
+
+\begin{corollary}
+    The same holds for a countable sequence of independent $\pi$-systems $\mathcal{A}_1, \mathcal{A}_2, \dots$.
+\end{corollary}
+
+\begin{corollary}
+    Theorem \ref{thm:set-independence-implies-sigma-Independence} holds for any countable set of random variables (the product may be infinite).
+\end{corollary}
+
+\begin{theorem}
+    In order for $X_1, \dots, X_n$ to be independent, it is sufficient that for all $x_i \in (-\infty, \infty]$.
+    $$ P(X_1 \leq x_1, \dots, X_n \leq x_n) = \prod\limits_{i=1}^n P(X_i \leq x_i)$$
+\end{theorem}
+
+\myproof{
+    Clearly each $\mathcal{A}_i = \text{ sets of the form } \{ X_i \leq x_i \}$ is a $\pi$-system. Since we have allowed $x_i = \infty$, $\Omega \in \mathcal{A}_i$. Since $\sigma(\mathcal{A}_i) = \sigma(X_i)$, we're done.
+}
+
+\begin{theorem}
+    Suppose $\mathcal{F}_{i, j}$, $1 \leq i \leq n$, $1 \leq j \leq m(i)$ are independent sub-$\sigma$-algebras of $\mathcal{F}$ and let $\mathcal{G}_i = \sigma(\cup_j \mathcal{F}_{i, j})$. Then $\mathcal{G}_1, \dots, \mathcal{G}_n$ are independent.
+\end{theorem}
+
+\myproof{
+    For each $i$, let $\mathcal{A}_i$ denote the collection of sets of the form $\cap_j A_{i, j}$ where $A_{i, j} \in \mathcal{F}_{i, j}$. Thus $\mathcal{A}_i$ is a $\pi$-system and $\Omega \in \mathcal{A}_i, \cup_j \mathcal{F}_{i, j} \subset \mathcal{A}_i$. So the previous theorem implies the result.
+}
+
+\begin{corollary}
+    The previous theorem holds for a countable number of families $\sigma$-algebras, each with a countable number of members.
+\end{corollary}
+
+\begin{theorem}
+    if for $1 \leq i \leq n$, $1 \leq j \leq m(i)$, $X_{i, j}$ are independent and $f_i : \mathbb{R}^{m(i)} \to \mathbb{R}$ are measurable then $f_i(X_{i, 1}, \dots, X_{i, m(i)})$ are independent.
+\end{theorem}
+
+\myproof{
+Let $\mathcal{F}_{i, j} = \sigma(X_{i, j})$ and $\mathcal{G}_i = \sigma(\cup_j \mathcal{F}_{i, j})$.
+
+Let $V_i$ denote the random vector $(X_{i, 1}, \dots, X_{i, m(i)})$ and $S_i =$ sets of the form $\{ \omega : V_i \in A_1 \times \dots \times A_{m(i)} \}$ where each $A_j$ is Borel. Notice that the sets of the form $A_1 \times \dots \times A_{m(i)}$ generate $R^{m(i)}$. This means that $\sigma(S_i)$ is precisely the smallest $\sigma$-algebra that makes $V_i$ measurable i.e. $\sigma(S_i) = \sigma(V_i)$.
+
+Also, notice that $\{ \omega : V_i \in A_1 \times \dots \times A_{m(i)} \} =$ $\{\omega : \forall 1 \leq j \leq m(i), X_{i,j} \in A_j \} = $ $\cap_j X_{i, j}^{-1}(A_j) $. Since each element of this intersection belongs to $\mathcal{G}_i$, we have $S_i \subset \mathcal{G}_i$, hence $\sigma(S_i) \subset \mathcal{G}_i$.
+
+This means that $G_i = f_i(X_{i, 1}, \dots, X_{i, m(i)})$ is $\mathcal{G}_i$ measurable, because if $B_1 \in \mathcal{B}_{\mathbb{R}}$, then $f_i^{-1}(B_1) = B_2 \in \mathcal{B}_{\mathbb{R}^{m(i)}}$. Now, $V_i^{-1}(B_2) \in \sigma(V_i) = \sigma(S_i)$. Therefore, $G_i^{-1}(B_1) \in \mathcal{G}_i$.
+
+Since each $G_i$ is $\mathcal{G}_i$ measurable, we have $\sigma(G_i) \subset \mathcal{G}_i$. So by the last theorem, the $\mathcal{G}_i$ are independent. Therefore, the $\sigma(G_i)$ are also independent and hence the $G_i$ are independent.
+}
+
+\begin{corollary}
+    The previous theorem also applies to a countable set of finite families of random variables.
+\end{corollary}
+
+
+\subsection{Independence, Distribution, and Expectation}
+
+\begin{theorem}
+    If $X_1, \dots, X_n$ are random variables and $X_i$ has distribution $\mu_i$, then $(X_1, \dots, X_n)$ has distribution $\mu_1 \times \dots \times \mu_n$.
+\end{theorem}
+
+\begin{theorem}
+    Suppose \( X \) and \( Y \) are independent and have distributions \( \mu \) and \( \nu \). If \( h : \mathbb{R}^2 \to \mathbb{R} \) is a measurable function with \( h \geq 0 \) or \( E|h(X, Y)| < \infty \), then
+    \[
+        E h(X, Y) = \int \int h(x, y) \, \mu(dx) \, \nu(dy).
+    \]
+
+    In particular, if \( h(x, y) = f(x) g(y) \) where \( f, g : \mathbb{R} \to \mathbb{R} \) are measurable functions with \( f, g \geq 0 \) or \( E|f(X)| \) and \( E|g(Y)| < \infty \), then
+    \[
+        E f(X) g(Y) = E f(X) \cdot E g(Y).
+    \]
+\end{theorem}
+
+\begin{theorem}
+    If \( X_1, \dots, X_n \) are independent and have (a) \( X_i \geq 0 \) for all \( i \), or (b) \( E|X_i| < \infty \) for all \( i \), then
+    \[
+        E \left( \prod_{i=1}^n X_i \right) = \prod_{i=1}^n E X_i
+    \]
+    i.e., the expectation on the left exists and has the value given on the right.
+\end{theorem}
+
+\begin{definition}
+    Two random variables $X$ and $Y$ with $EX^2 < \infty$, $EY^2 < \infty$ that have $E(XY)=EXEY$ are said to be \emph{uncorrelated}. The finite second moments are needed so that we know $E|XY| < \infty$ by the Cauchy-Schwarz inequality.
+\end{definition}
+
+\begin{theorem}
+    If $X$ and $Y$ are independent, $F(x) = P(X \leq x)$, and $G(y) = P(Y \leq y)$, then
+    $$ P(X+Y \leq z) = \int F(z - y) dG(y)$$
+    by the way, $dG(y)$ is the same as $\nu (dy)$, as previously mentioned in the previous chapter.
+\end{theorem}
+
+\begin{theorem}
+    Suppose that $X$ with density $f$ and $Y$ with distribution function $G$ are independent. Then $X+Y$ has density
+    $$ h(x) = \int f(x - y) dG(y)$$
+    When $Y$ has density $g$, the last formula can be written as
+    $$ h(x) = \int f(x-y) g(y) dy$$
+\end{theorem}
+
+\begin{example}
+    The gamma density with parameters \( \alpha \) and \( \lambda \) is given by
+    \[
+        f(x) =
+        \begin{cases}
+            \frac{\lambda^\alpha x^{\alpha-1} e^{-\lambda x}}{\Gamma(\alpha)} & \text{for } x \geq 0, \\
+            0                                                                 & \text{for } x < 0,
+        \end{cases}
+    \]
+    where \( \Gamma(\alpha) = \int_0^\infty x^{\alpha-1} e^{-x} \, dx \).
+\end{example}
+
+\begin{theorem}
+    If \( X = \text{gamma}(\alpha, \lambda) \) and \( Y = \text{gamma}(\beta, \lambda) \) are independent, then \( X + Y \) is \( \text{gamma}(\alpha + \beta, \lambda) \). Consequently, if \( X_1, \dots, X_n \) are independent exponential(\( \lambda \)) random variables, then \( X_1 + \cdots + X_n \) has a gamma(\( n, \lambda \)) distribution.
+\end{theorem}
+
+\begin{example}
+    Normal density with mean $\mu$ and variance $\sigma^2$:
+    \[
+        (2\pi\sigma^2)^{-1/2} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right).
+    \]
+\end{example}
+
+\begin{theorem}
+    If $X \sim \operatorname{normal}(\mu, a)$ and $Y \sim \operatorname{normal}(\nu, b)$ are independent then $X + Y \sim \operatorname{normal}(\mu + \nu, a + b)$.
+\end{theorem}
+
+\section{Constructing Independent Random Variables}
+
+It's easy to construct $n$ independent random variables $X_1, \dots, X_n$ with $n$ given distribution functions $F_1(x)$, $ \dots, F_n(x)$. We can just take $\Omega = \mathbb{R}^n$, $\mathcal{F} = \mathcal{B}_{\mathbb{R}^n}$ and $P$ such that
+
+$$ P((a_1, b_1] \times \dots \times (a_n, b_n]) = (F_1(b_1) - F_1(a_1)) \cdot \dots \cdot (F_n(b_n) - F_n(a_n))$$
+
+(more precisely, $P = \mu_1 \times \mu_n$)
+
+But our procedure of constructing product measures fails when we want to construct infinitely many independent random variables. In other words, we can't just take $\Omega = \mathbb{R}^\infty$, $\mathcal{F} = \mathcal{B}_{\mathbb{R}^\infty}$ and $P = \mu_1 \times \mu_2 \times \dots$.
+
+To do that, we need a stronger result
+
+\begin{theorem}[\textbf{Kolmogorov's Extension Theorem}]
+    Suppose we are given probability measures $\mu_n$ on $(\mathbb{R}^n, \mathcal{B}_{\mathbb{R}^n})$ that are consistent, that is,
+    $$ \mu_{n+1}((a_1, b_1] \times \dots \times (a_n, b_n] \times \mathbb{R}) = \mu_n((a_1, b_1] \times \dots \times (a_n, b_n])$$
+    Then there is a unique probability measure $P$ on $(\mathbb{R}^n, \mathcal{B}_{\mathbb{R}^n})$, with
+    $$ P( \{ \omega : \omega_i \in (a_i, b_i], 1 \leq i \leq n \}) = \mu_n((a_1, b_1] \times \dots \times (a_n, b_n])$$
+\end{theorem}
+
+\begin{definition}
+    $(S, \mathcal{S})$ is said to be a \emph{standard Borel space} if there is a $1-1$ map $\varphi$ from $S$ into $\mathbb{R}$ so that $\varphi$ and $\varphi^{-1}$ are both measurable.
+\end{definition}
+
+\begin{theorem}
+    If $S$ is a Borel subset of a complete separable metric space $M$, and $\mathcal{S}$ is the collection of Borel subsets of $S$, then $(S, \mathcal{S})$ is a standard Borel space.
+\end{theorem}
+
+\pagebreak
+
+\section{Weak Laws of Large Numbers}
+
+\begin{definition}
+    $Y_n$ \emph{converges in probability} to $Y$ if for all $\epsilon > 0$, $P(|Y_n - Y| > \epsilon) \to 0$ as $n \to \infty$.
+\end{definition}
+
+\subsection{L2 Weak laws}
+
+\begin{definition}
+
+    A family of random variables $X_i$ ($i \in I$) with $EX_i^2 < \infty$ is said to be \emph{uncorrelated} if we have
+    $$ E(X_i X_j) = EX_i EX_j \quad \text{whenever } i \neq j $$
+\end{definition}
+
+\begin{theorem}
+    Let $X_1, \dots, X_n$ have $EX_i^2 < \infty$ and be uncorrelated. Then
+    $$ \operatorname{var}(X_1 + \dots + X_n) = \operatorname{var}(X_1) + \dots + \operatorname{var}(X_n)$$
+\end{theorem}
+
+\begin{lemma}
+    If $p > 0$ and $E|Z_n|^p \to 0$ then $Z_n \to 0$ in probability.
+\end{lemma}
+
+\begin{theorem}[$L^2$ \textbf{weak law}]
+    Let $X_1, X_2, \dots$ be uncorrelated random variables with $EX_i = \mu$ and $\operatorname{var}(X_i) \leq C < \infty$. If $S_n = X_1 + \dots + X_n$ then as $n \to \infty$, $S_n/n \to \mu$ in $L^2$ and in probability.
+\end{theorem}
+
+\begin{definition}
+    When $X_1, X_2, \dots$ are all independent random variables with the same distributon, we say they're \emph{independent and identically distributed (i.i.d.)}.
+\end{definition}
+
+It's possible to prove some interesting things with probability.
+
+\begin{example}[\textbf{Polynomial approximation}]
+    Let $f$ be a continuous function on $[0, 1]$, and let
+    $$ f_n(x) = \sum\limits_{m=0}^n \binom{n}{m} x^m (1 - x)^{n-m} f(m/n)$$
+    Then as $n \to \infty$:
+    $$ \sup_{x \in [0, 1]} |f_n(x| - f(x)| \to 0$$
+\end{example}
+
+\begin{example}[\textbf{A high-dimensional cube is almost the boundary of a ball}]
+    Let $A_{n, \varepsilon} = \{x \in \mathbb{R}^n : (1 - \varepsilon) \sqrt{n/3} < |x| < (1 + \varepsilon) \sqrt{n/3} \}$. Then for any $\varepsilon > 0$, $|A_{n, \varepsilon} \cap (-1, 1)^n| / 2^n \to 1$.
+\end{example}
+
+\subsection{Triangular arrays}
+
+Many classical limit theorems in probability concern arrays $X_{n, k}$ of random variables and investigate their limiting behavior of the row sums $S_n = X_{n, 1} + \dots + X_{n, n}$. In most cases, we assume that the random variables on each row are independent.
+
+\begin{theorem}
+    (Here $X_{n, 1}, \dots, X_{n, n}$ can be any sequence of random variables)
+    Let $\mu_n = ES_n$, $\sigma_n^2 = \operatorname{var}(S_n)$. If $\sigma_n^2/b_n^2 \to 0$ then
+    $$ \dfrac{S_n - \mu_n}{b_n} \to 0 \quad \text{, in probability}$$
+\end{theorem}
+
+\subsection{Truncation}
+
+\begin{definition}
+    To truncate a random variable at level $M$ means to consider
+    $$ \overline{X} = X 1_{(|X| \leq M)}$$
+\end{definition}
+
+To extend the weak law to random variables without a second moment, we will truncate and then use Chebyshev's inequality.
+
+\begin{theorem}[\textbf{Weak law for triangular arrays}]
+    For each $n$, let $X_{n, k}$ ($1 \leq k \leq n$) be independent. Let $b_n > 0$ with $b_n \to \infty$, and let $\overline{X}_{n, k} = X_{n, k} 1_{(|X_{n, k}| \leq b_n)}$. Suppose that as $n \to \infty$
+    \begin{enumerate}
+        \item $\sum_{k=1}^n P(|X_{n, k}| > b_n) \to 0$ and
+        \item $b_n^{-2} \sum_{k=1}^n E \overline{X}_{n, k}^2 \to 0$
+    \end{enumerate}
+    If we let $S_n = X_{n, 1} + \dots + X_{n, n}$ and put $a_n = \sum_{k=1}^n E \overline{X}_{n, k}$, then
+    $$ (S_n - a_n)/b_n \to 0 \text{, in probability}$$
+\end{theorem}
+
+\begin{theorem}[\textbf{Weak law of large numbers}]
+    Let $X_1, X_2, \dots$ be i.i.d. with
+    $$ x P(|X_i| > x) \to 0 \quad \text{ as } x \to \infty$$
+    Let $S_n = X_1 + \dots + X_n$ and let $\mu_n = E(X_1 1_{|X_1| \leq n})$. Then $S_n/n - \mu \to 0$ in probability.
+\end{theorem}
+
+\begin{lemma}
+    If $Y \geq 0$ and $p > 0$ then $E(Y^p) = \int_0^\infty p y^{p-1} P(Y > y) dy$.
+\end{lemma}
+
+\begin{remark}
+    Taking $p = 1 - \varepsilon$ here shows that $xP(|X_1| > x) \to 0$ implies $E|X_1|^{1- \varepsilon} < \infty$. This means that the assumption made in the previous theorem is not much weaker than finite mean.
+\end{remark}
+
+\begin{theorem}
+    Let $X_1, X_2, \dots$ be i.i.d. with $E|X_i| < \infty$ and let $S_n = X_1 + \dots + X_n$ and let $\mu = EX_1$. Then $S_n/n \to \mu$ in probability.
+\end{theorem}
+
+\pagebreak
+
+\section{Borel-Cantelli Lemmas}
+
+Notice that
+
+$$ \limsup\limits_{n \to \infty} 1_{A_n} = 1_{(\limsup A_n)} \quad \liminf\limits_{n \to \infty} 1_{A_n} = 1_{(\liminf A_n)}$$
+
+\begin{exercise}
+    Prove that $P(\limsup A_n) \geq \limsup P(A_n)$ and $P(\liminf A_n) \leq \liminf P(A_n)$.
+\end{exercise}
+
+\begin{definition}
+    It is common to write $\limsup A_n = \{ \omega : \omega \in A_n \text{ i.o.} \}$ where i.o. means infinitely often.
+\end{definition}
+
+\begin{theorem}[\textbf{Borel-Cantelli lemma}]
+    If $\sum_{n=1}^\infty P(A_n) < \infty$ then $P(A_n \text{ i.o.}) = 0$
+    (in the sense of $P(\limsup A_n)=0$).
+\end{theorem}
+
+\begin{theorem}
+    $X_n \to X$ in probability iff for every subsequence $X_{n(m)}$ there is a further subsequence $X_{n(m_k)}$ that converges a.s. to $X$.
+\end{theorem}
+
+\begin{theorem}
+    If $f$ is continuous and $X_n \to X$ in probability then $f(X_n) \to f(X)$ in probability. If, in addition, $f$ is bounded then $Ef(X_n) \to Ef(X)$.
+\end{theorem}
+
+Our first law of large numbers tells us:
+
+\begin{theorem}
+    If $X_1, X_2, \dots$ are i.i.d. with $EX_i \to \mu$ and $EX_i^4 < \infty$ and $S_n = X_1 + \dots + X_n$ then $S_n/n \to \mu$ a.s.
+\end{theorem}
+
+\begin{theorem}[\textbf{The second Borel-Cantelli lemma}]
+    If the events $A_n$ are independent then $\sum P(A_n) = \infty$ implies $P(\limsup A_n) = 1$.
+\end{theorem}
+
+\begin{theorem}
+    If $X_1, X_2, \dots$ are i.i.d. with $E|X_i| = \infty$, then $P(|X_n| \geq n \text{ i.o.}) = 1$. So if $S_n = X_1 + \dots + X_n$ then $P(\lim S_n/n \text{ exists and } \in (-\infty, \infty)) = 0$.
+\end{theorem}
+
+\begin{theorem}
+    If $A_1, A_2, \dots$ are pairwise independent and $\sum_{n=1}^\infty P(A_n) = \infty$, then as $n \to \infty$
+    $$ \dfrac{\sum\limits_{m=1}^n 1_{A_m}}{\sum\limits_{m=1}^n P(A_m)} \to 1$$
+\end{theorem}
+
+\subsection{Strong Law of Large Numbers}
+
+\begin{theorem}
+    Let $X_1, X_2, \dots$ be pairwise independent identically distributed random variables with $E|X_i| < \infty$. Let $EX_i = \mu$ and $S_n = X_1 + \dots + X_n$. Then $S_n/n \to \mu$ a.s. as $n \to \infty$.
+\end{theorem}
+
+\end{document}
