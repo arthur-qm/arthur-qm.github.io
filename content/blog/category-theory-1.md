@@ -1,6 +1,6 @@
 ---
 title: "Category Theory (1) - Introduction"
-date: 2025-02-05 12:34:56 -0300
+date: 2025-02-16 12:34:56 -0300
 draft: false
 tags: [category-theory]
 featured: true
